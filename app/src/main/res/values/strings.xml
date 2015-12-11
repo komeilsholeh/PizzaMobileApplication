@@ -4,6 +4,8 @@
     <string name="pizza_Size">Pizza Size</string>
     <string name="which_pizza">Which Pizza</string>
     <string name="pizza_topping">Toppings</string>
+    <string name="add_topping">Add</string>
+    <string name="remove_topping">Remove</string>
 
     <string-array name="size_List">
         <item>"18 Inches"</item>
