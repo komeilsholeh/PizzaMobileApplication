@@ -112,13 +112,17 @@ public class Main extends AppCompatActivity {
         }
         return toppings;
     }
-
+    private List<String> list = new ArrayList<String>();
     public void addToppingToList(View view) {
-        //     Spinner pizzaTopping= (Spinner) findViewById(R.id.sprToppings);
-        //   ListView lstToppingList= (ListView) findViewById(R.id.lstToppings);
+        Spinner pizzaTopping= (Spinner) findViewById(R.id.sprToppings);
 
-        // getting the selected item from spinner
-        // String topping=String.valueOf(pizzaTopping.getSelectedItem());
+        String topping=String.valueOf(pizzaTopping.getSelectedItem());
+        list.add(topping);
+       // getting the selected item from spinner
+        ListView lstToppingList = (ListView) findViewById(R.id.lstToppings);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        lstToppingList.setAdapter(arrayAdapter);
 
         //
     }
@@ -129,7 +133,6 @@ public class Main extends AppCompatActivity {
 
         String[] toppings = pizzaToppingList(selectedPizza);
 
-        List<String> list = new ArrayList<String>();
         for (int i = 0; i < toppings.length; i++) {
             list.add(toppings[i].toString());
         }
