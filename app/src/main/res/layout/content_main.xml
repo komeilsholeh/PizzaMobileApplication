@@ -78,7 +78,7 @@
         android:layout_below="@+id/sprToppings"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:onClick="addToppingTolist()"
+        android:onClick="addToppingToList"
         android:nestedScrollingEnabled="true" />
 
     <Button
@@ -104,10 +104,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btnSelect"
-        android:id="@+id/button"
+        android:id="@+id/btnSelect"
         android:layout_alignBottom="@+id/sprWhichPizza"
         android:layout_alignParentRight="true"
-        android:onClick="addPizzaToppingTolist()"
+        android:onClick="addPizzaToppingToList"
         android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

@@ -12,12 +12,21 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class Main extends AppCompatActivity {
 
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +43,9 @@ public class Main extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     @Override
@@ -59,73 +71,72 @@ public class Main extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public String[] pizzaToppingList(String pizzaName){
-        Spinner pizzaType= (Spinner) findViewById(R.id.sprWhichPizza);
+    public String[] pizzaToppingList(String pizzaName) {
+        Spinner pizzaType = (Spinner) findViewById(R.id.sprWhichPizza);
         String[] toppings;
 
-        switch (pizzaName){
+        switch (pizzaName) {
             case "Margherita":
-                toppings= new String[]{"Cheese", "Tomato Sauce"};
+                toppings = new String[]{"Cheese", "Tomato Sauce"};
                 break;
             case "Hawaiian":
-                toppings= new String[]{"Cheese", "Tomato Sauce","Ham","Pineapple"};
+                toppings = new String[]{"Cheese", "Tomato Sauce", "Ham", "Pineapple"};
                 break;
             case "Meat Feast":
-                toppings= new String[]{"Cheese", "Tomato Sauce","Bacon","Ham","Meat Ball","Pepperoni"};
+                toppings = new String[]{"Cheese", "Tomato Sauce", "Bacon", "Ham", "Meat Ball", "Pepperoni"};
                 break;
             case "Pepperoni":
-                toppings= new String[]{"Cheese", "Tomato Sauce", "Pepperoni"};
+                toppings = new String[]{"Cheese", "Tomato Sauce", "Pepperoni"};
                 break;
             case "Pepperoni Plus":
-                toppings= new String[]{"Cheese", "Tomato Sauce","Pepperoni","Mushroom"};
+                toppings = new String[]{"Cheese", "Tomato Sauce", "Pepperoni", "Mushroom"};
                 break;
             case "Mexican":
-                toppings= new String[]{"Cheese", "Tomato Sauce", "Beef","Red Onion","Jalapeneo", "Chicken"};
+                toppings = new String[]{"Cheese", "Tomato Sauce", "Beef", "Red Onion", "Jalapeneo", "Chicken"};
                 break;
             case "Chicken Hot":
-                toppings= new String[]{"Cheese", "Tomato Sauce","Chicken","Jalapeneo", "Mushroom"};
+                toppings = new String[]{"Cheese", "Tomato Sauce", "Chicken", "Jalapeneo", "Mushroom"};
                 break;
             case "Chicken Special":
-                toppings= new String[]{"Cheese", "Tomato Sauce","Chicken","Red Onion","Green Pepper","Sweet Corn"};
+                toppings = new String[]{"Cheese", "Tomato Sauce", "Chicken", "Red Onion", "Green Pepper", "Sweet Corn"};
                 break;
             case "BBQ Chicken":
-                toppings= new String[]{"Cheese", "BBQ Sauce","Chicken","Red Onion","Green Pepper"};
+                toppings = new String[]{"Cheese", "BBQ Sauce", "Chicken", "Red Onion", "Green Pepper"};
                 break;
             case "Meaty BBQ":
-                toppings= new String[]{"Cheese", "BBQ Sauce", "Beef","Red Onion","Mushroom"};
+                toppings = new String[]{"Cheese", "BBQ Sauce", "Beef", "Red Onion", "Mushroom"};
                 break;
             default:
-                toppings= new String[]{"Cheese", "Tomato Sauce"};
+                toppings = new String[]{"Cheese", "Tomato Sauce"};
                 break;
         }
         return toppings;
     }
 
-    public void addToppingTolist(View view){
-   //     Spinner pizzaTopping= (Spinner) findViewById(R.id.sprToppings);
-     //   ListView lstToppingList= (ListView) findViewById(R.id.lstToppings);
+    public void addToppingToList(View view) {
+        //     Spinner pizzaTopping= (Spinner) findViewById(R.id.sprToppings);
+        //   ListView lstToppingList= (ListView) findViewById(R.id.lstToppings);
 
         // getting the selected item from spinner
-       // String topping=String.valueOf(pizzaTopping.getSelectedItem());
+        // String topping=String.valueOf(pizzaTopping.getSelectedItem());
 
         //
     }
 
-    public void addPizzaToppingTolist(View view){
-        Spinner sprPizza = (Spinner)findViewById(R.id.sprWhichPizza);
+    public void addPizzaToppingToList(View view) {
+        Spinner sprPizza = (Spinner) findViewById(R.id.sprWhichPizza);
         String selectedPizza = sprPizza.getSelectedItem().toString();
 
-        String[] toppings=pizzaToppingList(selectedPizza);
-        List<String> list=new ArrayList<String>();
-        for(int i=0; i < list.size();i++){
+        String[] toppings = pizzaToppingList(selectedPizza);
+
+        List<String> list = new ArrayList<String>();
+        for (int i = 0; i < toppings.length; i++) {
             list.add(toppings[i].toString());
         }
 
-        ListView lstToppingList= (ListView) findViewById(R.id.lstToppings);
-        ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list);
+        ListView lstToppingList = (ListView) findViewById(R.id.lstToppings);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         lstToppingList.setAdapter(arrayAdapter);
     }
-
-
 }
