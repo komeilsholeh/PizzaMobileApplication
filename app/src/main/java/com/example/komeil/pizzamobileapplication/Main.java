@@ -56,7 +56,50 @@ public class Main extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void addTolist(View view){
+    public String[] pizzaToppingList(View view){
+        Spinner pizzaType= (Spinner) findViewById(R.id.sprWichPizza);
+        String pizzaName=String.valueOf(pizzaType.getSelectedItem());
+        String[] toppings;
+
+        switch (pizzaName){
+            case "Create Your Own":
+                toppings= new String[]{"Cheese", "Tomato Sauce"};
+                break;
+            case "Hawaiian":
+                toppings= new String[]{"Cheese", "Tomato Sauce","Ham","Pineapple"};
+                break;
+            case "Meat Feast":
+                toppings= new String[]{"Cheese", "Tomato Sauce","Bacon","Ham","Meat Ball","Pepperoni"};
+                break;
+            case "Pepperoni":
+                toppings= new String[]{"Cheese", "Tomato Sauce", "Pepperoni"};
+                break;
+            case "Pepperoni Plus":
+                toppings= new String[]{"Cheese", "Tomato Sauce","Pepperoni","Mushroom"};
+                break;
+            case "Mexican":
+                toppings= new String[]{"Cheese", "Tomato Sauce", "Beef","Red Onion","Jalapeneo", "Chicken"};
+                break;
+            case "Chicken Hot":
+                toppings= new String[]{"Cheese", "Tomato Sauce","Chicken","Jalapeneo", "Mushroom"};
+                break;
+            case "Chicken Special":
+                toppings= new String[]{"Cheese", "Tomato Sauce","Chicken","Red Onion","Green Pepper","Sweet Corn"};
+                break;
+            case "BBQ Chicken":
+                toppings= new String[]{"Cheese", "BBQ Sauce","Chicken","Red Onion","Green Pepper"};
+                break;
+            case "Meaty BBQ":
+                toppings= new String[]{"Cheese", "BBQ Sauce", "Beef","Red Onion","Mushroom"};
+                break;
+            default:
+                toppings= new String[]{"Cheese", "Tomato Sauce"};
+                break;
+        }
+        return toppings;
+    }
+
+    public void addToppingTolist(View view){
         Spinner pizzaTopping= (Spinner) findViewById(R.id.sprToppings);
         ListView lstToppingList= (ListView) findViewById(R.id.lstToppings);
 

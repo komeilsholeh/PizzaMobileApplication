@@ -48,7 +48,8 @@
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:entries="@array/pizza_list"/>
+        android:entries="@array/pizza_list"
+        android:onClick="findSelected()" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -67,7 +68,8 @@
         android:layout_below="@+id/textView3"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:entries="@array/pizza_Toppings"/>
+        android:entries="@array/pizza_Toppings"
+        android:clickable="false" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -78,7 +80,7 @@
         android:layout_below="@+id/sprToppings"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:onClick="addToList()"
+        android:onClick="addToppingTolist()"
         android:nestedScrollingEnabled="true" />
 
     <Button
