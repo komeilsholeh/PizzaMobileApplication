@@ -1,18 +1,14 @@
 package com.example.komeil.pizzamobileapplication;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Spinner;
 
-import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.ArrayList;
@@ -35,17 +31,18 @@ public class Main extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+
+                Snackbar.make(view, "Total Price", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();*/
     }
 
     @Override
@@ -72,7 +69,6 @@ public class Main extends AppCompatActivity {
     }
 
     public String[] pizzaToppingList(String pizzaName) {
-        Spinner pizzaType = (Spinner) findViewById(R.id.sprWhichPizza);
         String[] toppings;
 
         switch (pizzaName) {
@@ -113,22 +109,23 @@ public class Main extends AppCompatActivity {
         return toppings;
     }
     private List<String> list = new ArrayList<String>();
-    public void addToppingToList(View view) {
-        Spinner pizzaTopping= (Spinner) findViewById(R.id.sprToppings);
 
-        String topping=String.valueOf(pizzaTopping.getSelectedItem());
-        list.add(topping);
+    public void addToppingToList(View view) {
+        Spinner topping= (Spinner) findViewById(R.id.sprAllToppings);
+        String selectedTopping=String.valueOf(topping.getSelectedItem());
+
+        list.add(selectedTopping);
        // getting the selected item from spinner
-        ListView lstToppingList = (ListView) findViewById(R.id.lstToppings);
+        Spinner sprPizzaToppings = (Spinner) findViewById(R.id.sprSelectedPizzaToppins);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        lstToppingList.setAdapter(arrayAdapter);
+        sprPizzaToppings.setAdapter(arrayAdapter);
 
         //
     }
 
     public void addPizzaToppingToList(View view) {
-        Spinner sprPizza = (Spinner) findViewById(R.id.sprWhichPizza);
+        Spinner sprPizza = (Spinner) findViewById(R.id.sprAllPizzaList);
         String selectedPizza = sprPizza.getSelectedItem().toString();
 
         String[] toppings = pizzaToppingList(selectedPizza);
@@ -137,9 +134,29 @@ public class Main extends AppCompatActivity {
             list.add(toppings[i].toString());
         }
 
-        ListView lstToppingList = (ListView) findViewById(R.id.lstToppings);
+        Spinner sprToppingList = (Spinner) findViewById(R.id.sprSelectedPizzaToppins);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        lstToppingList.setAdapter(arrayAdapter);
+        sprToppingList.setAdapter(arrayAdapter);
+    }
+
+    public void removeToppingFromList(View view){
+        Spinner sprPizzaTopping = (Spinner) findViewById(R.id.sprSelectedPizzaToppins);
+        String topping=sprPizzaTopping.getSelectedItem().toString();
+        for(int i=0; i < list.size();i++){
+            String tp=list.get(i);
+            if(topping.equals(tp)){
+                list.remove(i);
+            }
+        }
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sprPizzaTopping.setAdapter(arrayAdapter);
+    }
+
+    private String claculateTotalPrice(){
+        String total="";
+        int Size;
+        return total;
     }
 }

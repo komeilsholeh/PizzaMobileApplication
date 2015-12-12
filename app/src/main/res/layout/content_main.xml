@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -9,8 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.komeil.pizzamobileapplication.Main"
-    tools:showIn="@layout/activity_main">
+    android:scrollIndicators="right">
 
     <Spinner
         android:layout_width="wrap_content"
@@ -27,7 +25,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/pizza_Size"
         android:id="@+id/textView2"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/textView4"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -44,7 +42,7 @@
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/sprWhichPizza"
+        android:id="@+id/sprAllPizzaList"
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -56,14 +54,14 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/pizza_topping"
         android:id="@+id/textView3"
-        android:layout_below="@+id/sprWhichPizza"
+        android:layout_below="@+id/sprAllPizzaList"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/sprToppings"
+        android:id="@+id/sprAllToppings"
         android:layout_below="@+id/textView3"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -75,7 +73,7 @@
         android:layout_height="wrap_content"
         android:text="@string/add_topping"
         android:id="@+id/btnAdd"
-        android:layout_below="@+id/sprToppings"
+        android:layout_below="@+id/sprAllToppings"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:onClick="addToppingToList"
@@ -87,17 +85,10 @@
         android:layout_height="wrap_content"
         android:text="@string/remove_topping"
         android:id="@+id/btnRemove"
-        android:layout_below="@+id/sprToppings"
+        android:layout_below="@+id/sprAllToppings"
         android:layout_toRightOf="@+id/btnAdd"
-        android:layout_toEndOf="@+id/btnAdd" />
-
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/lstToppings"
-        android:layout_below="@+id/btnAdd"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_toEndOf="@+id/btnAdd"
+        android:onClick="removeToppingFromList"/>
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -105,9 +96,32 @@
         android:layout_height="wrap_content"
         android:text="@string/btnSelect"
         android:id="@+id/btnSelect"
-        android:layout_alignBottom="@+id/sprWhichPizza"
+        android:layout_alignBottom="@+id/sprAllPizzaList"
         android:layout_alignParentRight="true"
         android:onClick="addPizzaToppingToList"
         android:layout_alignParentEnd="true" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sprSelectedPizzaToppins"
+        android:layout_below="@+id/btnAdd"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/textView4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/btnSelect"
+        android:layout_alignEnd="@+id/btnSelect"
+        android:background="#1e277c"
+        android:textColor="#fefefe"
+        android:textAlignment="center" />
 
 </RelativeLayout>
