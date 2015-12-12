@@ -8,8 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -40,35 +40,7 @@ public class Main extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        Spinner sprPizza = (Spinner)findViewById(R.id.sprWhichPizza);
 
-        final List<String> list=new ArrayList<String>();
-        list.add("Create Your Own");
-        list.add("Hawaiian");
-        list.add("Meat Feast");
-        list.add("Pepperoni");
-        list.add("Pepperoni Plus");
-        list.add("Mexican");
-        list.add("Chicken Hot");
-        list.add("Chicken Special");
-        list.add("BBQ Chicken");
-        list.add("Meaty BBQ");
-
-        ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sprPizza.setAdapter(arrayAdapter);
-
-        sprPizza.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
-               pizzaToppingList(list.get(position));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-                pizzaToppingList("Create Your Own");
-            }
-        });
         return true;
     }
 
@@ -92,7 +64,7 @@ public class Main extends AppCompatActivity {
         String[] toppings;
 
         switch (pizzaName){
-            case "Create Your Own":
+            case "Margherita":
                 toppings= new String[]{"Cheese", "Tomato Sauce"};
                 break;
             case "Hawaiian":
@@ -137,7 +109,23 @@ public class Main extends AppCompatActivity {
        // String topping=String.valueOf(pizzaTopping.getSelectedItem());
 
         //
-
-
     }
+
+    public void addPizzaToppingTolist(View view){
+        Spinner sprPizza = (Spinner)findViewById(R.id.sprWhichPizza);
+        String selectedPizza = sprPizza.getSelectedItem().toString();
+
+        String[] toppings=pizzaToppingList(selectedPizza);
+        List<String> list=new ArrayList<String>();
+        for(int i=0; i < list.size();i++){
+            list.add(toppings[i].toString());
+        }
+
+        ListView lstToppingList= (ListView) findViewById(R.id.lstToppings);
+        ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        lstToppingList.setAdapter(arrayAdapter);
+    }
+
+
 }

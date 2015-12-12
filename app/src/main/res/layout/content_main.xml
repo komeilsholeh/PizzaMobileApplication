@@ -47,7 +47,8 @@
         android:id="@+id/sprWhichPizza"
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true"
+        android:entries="@array/pizza_list"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -97,5 +98,16 @@
         android:layout_below="@+id/btnAdd"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnSelect"
+        android:id="@+id/button"
+        android:layout_alignBottom="@+id/sprWhichPizza"
+        android:layout_alignParentRight="true"
+        android:onClick="addPizzaToppingTolist()"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
