@@ -19,7 +19,7 @@
         android:layout_below="@+id/textView2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:entries="@array/size_List"/>
+        android:entries="@array/size_List" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -44,12 +44,10 @@
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/sprWichPizza"
+        android:id="@+id/sprWhichPizza"
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:entries="@array/pizza_list"
-        android:onClick="findSelected()" />
+        android:layout_alignParentStart="true"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -57,7 +55,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/pizza_topping"
         android:id="@+id/textView3"
-        android:layout_below="@+id/sprWichPizza"
+        android:layout_below="@+id/sprWhichPizza"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -68,8 +66,7 @@
         android:layout_below="@+id/textView3"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:entries="@array/pizza_Toppings"
-        android:clickable="false" />
+        android:entries="@array/pizza_Toppings" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
