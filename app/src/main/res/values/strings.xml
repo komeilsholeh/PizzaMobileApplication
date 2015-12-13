@@ -1,7 +1,8 @@
 <resources>
 
     <string name="app_name">Pizza Application</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_addSide">Add Side Orders</string>
+    <string name="action_Basket">Shopping Basket</string>
     <string name="pizza_Size">Pizza Size</string>
     <string name="which_pizza">Which Pizza</string>
     <string name="pizza_topping">Add Or Remove Toppings</string>

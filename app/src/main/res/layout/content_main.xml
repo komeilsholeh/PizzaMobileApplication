@@ -98,8 +98,8 @@
         android:id="@+id/btnSelect"
         android:onClick="addPizzaToppingToList"
         android:layout_alignBottom="@+id/sprAllPizzaList"
-        android:layout_alignRight="@+id/sprAllPizzaList"
-        android:layout_alignEnd="@+id/sprAllPizzaList" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Spinner
         android:layout_width="wrap_content"
