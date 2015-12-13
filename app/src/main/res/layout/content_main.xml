@@ -96,10 +96,10 @@
         android:layout_height="wrap_content"
         android:text="@string/btnSelect"
         android:id="@+id/btnSelect"
-        android:layout_alignBottom="@+id/sprAllPizzaList"
-        android:layout_alignParentRight="true"
         android:onClick="addPizzaToppingToList"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignBottom="@+id/sprAllPizzaList"
+        android:layout_alignRight="@+id/sprAllPizzaList"
+        android:layout_alignEnd="@+id/sprAllPizzaList" />
 
     <Spinner
         android:layout_width="wrap_content"
