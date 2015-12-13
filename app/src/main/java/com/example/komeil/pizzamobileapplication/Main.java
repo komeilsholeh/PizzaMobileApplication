@@ -38,9 +38,9 @@ public class Main extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Snackbar.make(view, "Total Price", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                String st=claculateTotalPrice();
+                Snackbar.make(view, st, Snackbar.LENGTH_LONG)
+                        .setAction(st, null).show();
             }
         });
         // ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -158,8 +158,35 @@ public class Main extends AppCompatActivity {
     }
 
     private String claculateTotalPrice(){
-        String total="";
-        int Size;
+        Spinner sprSelectedPizza= (Spinner) findViewById(R.id.sprSelectedPizzaToppins);
+        String total="Please Select Your Pizza";
+        if (sprSelectedPizza.getCount()>0){
+            String pn = sprSelectedPizza.getSelectedItem().toString();
+            Spinner sprPizzaSize= (Spinner) findViewById(R.id.sprPizzaSize);
+            int price=0;
+            switch (pn){
+                case "18 Inches":
+                    price=19;
+                    break;
+                case "15 Inches":
+                    price=16;
+                    break;
+                case "12 Inches":
+                    price=14;
+                    break;
+                case "9 Inches":
+                    price=10;
+                    break;
+                case "7 Inches":
+                    price=5;
+                    break;
+            }
+            if (sprSelectedPizza.getCount()>6){
+                int ext=sprSelectedPizza.getCount()-6;
+                price=price+ext;
+            }
+            total="Total Price £" + String.valueOf(price);
+        }
         return total;
     }
 }
