@@ -161,8 +161,8 @@ public class Main extends AppCompatActivity {
         Spinner sprSelectedPizza= (Spinner) findViewById(R.id.sprSelectedPizzaToppins);
         String total="Please Select Your Pizza";
         if (sprSelectedPizza.getCount()>0){
-            String pn = sprSelectedPizza.getSelectedItem().toString();
             Spinner sprPizzaSize= (Spinner) findViewById(R.id.sprPizzaSize);
+            String pn = sprPizzaSize.getSelectedItem().toString();
             int price=0;
             switch (pn){
                 case "18 Inches":
@@ -183,7 +183,7 @@ public class Main extends AppCompatActivity {
             }
             if (sprSelectedPizza.getCount()>6){
                 int ext=sprSelectedPizza.getCount()-6;
-                price=price+ext;
+                price =price +ext;
             }
             total="Total Price £" + String.valueOf(price);
         }
