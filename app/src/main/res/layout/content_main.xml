@@ -51,11 +51,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnAdd"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:src="@mipmap/basket"
         android:onClick="addPizzaToBasket"
-        android:background="@mipmap/basket" />
+        android:background="@mipmap/add_to_cart_button"
+        android:layout_below="@+id/sprAllPizzaList"
+        android:layout_centerHorizontal="true"
+        android:minHeight="40dp"
+        android:minWidth="180dp" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lstBasket"
+        android:layout_below="@+id/btnAdd"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
