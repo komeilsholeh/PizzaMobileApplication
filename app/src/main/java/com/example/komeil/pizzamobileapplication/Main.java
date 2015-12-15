@@ -17,29 +17,23 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class Main extends AppCompatActivity {
 
 
-    private List<Basket> basket = new ArrayList<Basket>();
-
     private GoogleApiClient client;
-
+    private BasketActivity basket=new BasketActivity();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String st=claculateTotalPrice();
+                String st=basket.claculateTotalPrice();
                 Snackbar.make(view, st, Snackbar.LENGTH_LONG)
                         .setAction(st, null).show();
             }
@@ -53,6 +47,15 @@ public class Main extends AppCompatActivity {
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
+
+    public void addPizzaToBasket(View view) {
+        Spinner sprSelPizza = (Spinner) findViewById(R.id.sprAllPizzaList);
+        String selectedPizza = sprSelPizza.getSelectedItem().toString();
+        Spinner sprPizzaSize= (Spinner) findViewById(R.id.sprPizzaSize);
+        String pizzasize = sprPizzaSize.getSelectedItem().toString();
+        basket.addToBasket(pizzasize, selectedPizza);
+        Toast.makeText(getApplicationContext(), "Added To Basket", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -78,47 +81,6 @@ public class Main extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private Pizza pizza;
-
-    public void addPizzaToBasket(View view) {
-        Spinner sprPizza = (Spinner) findViewById(R.id.sprAllPizzaList);
-        String selectedPizza = sprPizza.getSelectedItem().toString();
-        Pizza apizza= getSelectedPizza(selectedPizza);
-
-        Spinner sprPizzaSize= (Spinner) findViewById(R.id.sprPizzaSize);
-        String pn = sprPizzaSize.getSelectedItem().toString();
-        double price=0;
-        switch (pn){
-            case "18 Inches":
-                price= apizza.getPrice18();
-                break;
-            case "15 Inches":
-                price= apizza.getPrice15();
-                break;
-            case "12 Inches":
-                price= apizza.getPrice12();
-                break;
-            case "10 Inches":
-                price= apizza.getPrice10();
-                break;
-        }
-        Basket item=new Basket(selectedPizza, apizza.getToppings(),price);
-        basket.add(item);
-        Toast.makeText(getApplicationContext(), "Added To Basket", Toast.LENGTH_LONG).show();
-    }
-
-
-
-    private String claculateTotalPrice(){
-        double price=0;
-        if (basket.size()>0){
-            for(int i=0;i< basket.size();i++){
-                price=price+basket.get(i).getPrice();
-            }
-        }
-        String total="Total Price £" + String.valueOf(price);
-        return total;
-    }
 
     @Override
     public void onStart() {
@@ -160,13 +122,4 @@ public class Main extends AppCompatActivity {
         client.disconnect();
     }
 
-    public Pizza getSelectedPizza(String pizzaName){
-        Pizza selectedpizza=Pizza.pizzas[0];
-        for(int i=0;i < Pizza.pizzas.length; i++) {
-            if(pizzaName.equals(Pizza.pizzas[i].getPizzaName())){
-                selectedpizza=Pizza.pizzas[i];
-            }
-        }
-        return selectedpizza;
-    }
 }
