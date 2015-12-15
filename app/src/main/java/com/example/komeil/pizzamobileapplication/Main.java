@@ -21,13 +21,18 @@ import com.google.android.gms.common.api.GoogleApiClient;
 public class Main extends AppCompatActivity {
 
     private GoogleApiClient client;
+
+    // implementing an instance of BasketActivity
     private BasketActivity basket=new BasketActivity();
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // adding a toolbar with application name to the main layout
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        // adding an information button to main layout which is showing the total basket price in a popup
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,16 +43,18 @@ public class Main extends AppCompatActivity {
             }
         });
 
-
-
+        // adding all the pizza in the lizt in pizza class to a spinner in mail layout
         Spinner sprPizza = (Spinner) findViewById(R.id.sprAllPizzaList);
         ArrayAdapter<Pizza> listAdapter= new ArrayAdapter<Pizza>(
                 this,android.R.layout.simple_spinner_item,Pizza.pizzas);
         sprPizza.setAdapter(listAdapter);
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
+
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
+
+    /* addPizzaToBasket getting selected pizza and selected size from spinners and sent it to
+     add to basket function to basket activity class.
+     also it is adding a new added item to the listview on the main layout*/
 
     public void addPizzaToBasket(View view) {
         Spinner sprSelPizza = (Spinner) findViewById(R.id.sprAllPizzaList);

@@ -2,9 +2,6 @@ package com.example.komeil.pizzamobileapplication;
 
 import android.app.ListActivity;
 import android.net.Uri;
-import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -18,6 +15,10 @@ import java.util.List;
  */
 public class BasketActivity extends ListActivity {
 
+    // implementation if lists which i am using in this application
+    // basket is the list of shopping list
+    // basketList is the list which i am using to show the items in basket in a list view
+
     private List<Basket> basket = new ArrayList<Basket>();
     private List<String> basketList = new ArrayList<String>();
 
@@ -27,21 +28,9 @@ public class BasketActivity extends ListActivity {
      */
     private GoogleApiClient client;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-       // listView= (ListView) findViewById(R.id.lstBasket);
-
-        ListView lstbasket = getListView();
-        ArrayAdapter<Basket> lstAdapter = new ArrayAdapter<Basket>(
-                this,
-                android.R.layout.simple_list_item_1, basket);
-        lstbasket.setAdapter(lstAdapter);
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-    }
+    //add to basket function is getting pizza size and pizza name from main activity class
+    // and then it find the pizza in the list and add the related price of the pizza and
+    // its topping to the basket.
 
     public void addToBasket(String pizzaSize, String pizzaName) {
         Pizza apizza = getSelectedPizza(pizzaName);
@@ -64,7 +53,7 @@ public class BasketActivity extends ListActivity {
         basket.add(item);
         basketList.add(pizzaSize + " " + pizzaName +" £"+ String.valueOf(price));
     }
-
+        // return the position of selected pizza in the list
     public Pizza getSelectedPizza(String pizzaName) {
         Pizza selectedpizza = Pizza.pizzas[0];
         for (int i = 0; i < Pizza.pizzas.length; i++) {
@@ -74,7 +63,7 @@ public class BasketActivity extends ListActivity {
         }
         return selectedpizza;
     }
-
+        // calculate the total price of the basket and return it as a string
     public String claculateTotalPrice() {
         double price = 0;
         if (basket.size() > 0) {
