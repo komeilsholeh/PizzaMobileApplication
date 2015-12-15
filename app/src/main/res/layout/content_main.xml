@@ -54,6 +54,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:src="@mipmap/Basket" />
+        android:src="@mipmap/basket"
+        android:onClick="addPizzaToBasket" />
 
 </RelativeLayout>
