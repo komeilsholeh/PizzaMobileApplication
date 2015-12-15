@@ -21,10 +21,8 @@ import java.util.List;
 public class Main extends AppCompatActivity {
 
 
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
+    private List<Basket> basket = new ArrayList<Basket>();
+
     private GoogleApiClient client;
 
     @Override
@@ -43,6 +41,12 @@ public class Main extends AppCompatActivity {
                         .setAction(st, null).show();
             }
         });
+
+
+        Spinner sprPizza = (Spinner) findViewById(R.id.sprAllPizzaList);
+        ArrayAdapter<Pizza> listAdapter= new ArrayAdapter<Pizza>(
+                this,android.R.layout.simple_spinner_item,Pizza.pizzas);
+        sprPizza.setAdapter(listAdapter);
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
@@ -71,122 +75,43 @@ public class Main extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public String[] pizzaToppingList(String pizzaName) {
-        String[] toppings;
+    private Pizza pizza;
 
-        switch (pizzaName) {
-            case "Margherita":
-                toppings = new String[]{"Cheese", "Tomato Sauce"};
-                break;
-            case "Hawaiian":
-                toppings = new String[]{"Cheese", "Tomato Sauce", "Ham", "Pineapple"};
-                break;
-            case "Meat Feast":
-                toppings = new String[]{"Cheese", "Tomato Sauce", "Bacon", "Ham", "Meat Ball", "Pepperoni"};
-                break;
-            case "Pepperoni":
-                toppings = new String[]{"Cheese", "Tomato Sauce", "Pepperoni"};
-                break;
-            case "Pepperoni Plus":
-                toppings = new String[]{"Cheese", "Tomato Sauce", "Pepperoni", "Mushroom"};
-                break;
-            case "Mexican":
-                toppings = new String[]{"Cheese", "Tomato Sauce", "Beef", "Red Onion", "Jalapeneo", "Chicken"};
-                break;
-            case "Chicken Hot":
-                toppings = new String[]{"Cheese", "Tomato Sauce", "Chicken", "Jalapeneo", "Mushroom"};
-                break;
-            case "Chicken Special":
-                toppings = new String[]{"Cheese", "Tomato Sauce", "Chicken", "Red Onion", "Green Pepper", "Sweet Corn"};
-                break;
-            case "BBQ Chicken":
-                toppings = new String[]{"Cheese", "BBQ Sauce", "Chicken", "Red Onion", "Green Pepper"};
-                break;
-            case "Meaty BBQ":
-                toppings = new String[]{"Cheese", "BBQ Sauce", "Beef", "Red Onion", "Mushroom"};
-                break;
-            default:
-                toppings = new String[]{"Cheese", "Tomato Sauce"};
-                break;
-        }
-        return toppings;
-    }
-    private List<String> list = new ArrayList<>();
-
-    public void addToppingToList(View view) {
-        Spinner topping= (Spinner) findViewById(R.id.sprAllToppings);
-        String selectedTopping=String.valueOf(topping.getSelectedItem());
-
-        list.add(selectedTopping);
-       // getting the selected item from spinner
-        Spinner sprPizzaToppings = (Spinner) findViewById(R.id.sprSelectedPizzaToppins);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sprPizzaToppings.setAdapter(arrayAdapter);
-
-        //
-    }
-
-    public void addPizzaToppingToList(View view) {
+    public void addPizzaToBasket(View view) {
         Spinner sprPizza = (Spinner) findViewById(R.id.sprAllPizzaList);
         String selectedPizza = sprPizza.getSelectedItem().toString();
+        Pizza apizza=pizza.getSelectedPizza(selectedPizza);
 
-        String[] toppings = pizzaToppingList(selectedPizza);
 
-        for (int i = 0; i < toppings.length; i++) {
-            list.add(toppings[i].toString());
+        Spinner sprPizzaSize= (Spinner) findViewById(R.id.sprPizzaSize);
+        String pn = sprPizzaSize.getSelectedItem().toString();
+        double price=0;
+        switch (pn){
+            case "18 Inches":
+                price= apizza.getPrice18();
+                break;
+            case "15 Inches":
+                price= apizza.getPrice15();
+                break;
+            case "12 Inches":
+                price= apizza.getPrice12();
+                break;
+            case "10 Inches":
+                price= apizza.getPrice10();
+                break;
         }
-
-        Spinner sprToppingList = (Spinner) findViewById(R.id.sprSelectedPizzaToppins);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sprToppingList.setAdapter(arrayAdapter);
+        Basket item=new Basket(selectedPizza, apizza.getToppings(),price);
+        basket.add(item);
     }
 
-    public void removeToppingFromList(View view){
-        Spinner sprPizzaTopping = (Spinner) findViewById(R.id.sprSelectedPizzaToppins);
-        String topping=sprPizzaTopping.getSelectedItem().toString();
-        for(int i=0; i < list.size();i++){
-            String tp=list.get(i);
-            if(topping.equals(tp)){
-                list.remove(i);
-            }
-        }
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sprPizzaTopping.setAdapter(arrayAdapter);
-    }
+
 
     private String claculateTotalPrice(){
-        Spinner sprSelectedPizza= (Spinner) findViewById(R.id.sprSelectedPizzaToppins);
-        String total="Please Select Your Pizza";
-        if (sprSelectedPizza.getCount()>0){
-            Spinner sprPizzaSize= (Spinner) findViewById(R.id.sprPizzaSize);
-            String pn = sprPizzaSize.getSelectedItem().toString();
-            int price=0;
-            switch (pn){
-                case "18 Inches":
-                    price=19;
-                    break;
-                case "15 Inches":
-                    price=16;
-                    break;
-                case "12 Inches":
-                    price=14;
-                    break;
-                case "9 Inches":
-                    price=10;
-                    break;
-                case "7 Inches":
-                    price=5;
-                    break;
-            }
-            if (sprSelectedPizza.getCount()>6){
-                int ext=sprSelectedPizza.getCount()-6;
-                price =price +ext;
-            }
-            total="Total Price £" + String.valueOf(price);
+        double total=0;
+        if (basket.size()>0){
+
         }
+        total="Total Price £" + String.valueOf(price);
         return total;
     }
 }

@@ -52,11 +52,17 @@ public class Pizza {
 
     @Override
     public String toString() {
-        return "Pizza{" +
-                "toppings='" + toppings + '\'' +
-                ", pizzaName='" + pizzaName + '\'' +
-                '}';
+        return pizzaName;
     }
 
+    public Pizza getSelectedPizza(String pizzaName){
+        Pizza pizza= pizzas[0];
+        for(int i=0;i < pizzas.length; i++) {
+            if(pizzaName.equals(pizzas[i].getPizzaName())){
+                pizza=pizzas[i];
+            }
+        }
+        return pizza;
+    }
 
 }

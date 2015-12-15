@@ -45,68 +45,15 @@
         android:id="@+id/sprAllPizzaList"
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:entries="@array/pizza_list"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/pizza_topping"
-        android:id="@+id/textView3"
-        android:layout_below="@+id/sprAllPizzaList"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <Spinner
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/sprAllToppings"
-        android:layout_below="@+id/textView3"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:entries="@array/pizza_Toppings" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/add_topping"
         android:id="@+id/btnAdd"
-        android:layout_below="@+id/sprAllToppings"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:onClick="addToppingToList"
-        android:nestedScrollingEnabled="true" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/remove_topping"
-        android:id="@+id/btnRemove"
-        android:layout_below="@+id/sprAllToppings"
-        android:layout_toRightOf="@+id/btnAdd"
-        android:layout_toEndOf="@+id/btnAdd"
-        android:onClick="removeToppingFromList"/>
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btnSelect"
-        android:id="@+id/btnSelect"
-        android:onClick="addPizzaToppingToList"
-        android:layout_alignBottom="@+id/sprAllPizzaList"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/sprSelectedPizzaToppins"
-        android:layout_below="@+id/btnAdd"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:src="@mipmap/Basket" />
 
 </RelativeLayout>
