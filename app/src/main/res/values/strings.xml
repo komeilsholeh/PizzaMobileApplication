@@ -1,13 +1,8 @@
 <resources>
 
     <string name="app_name">Pizza Application</string>
-    <string name="action_addSide">Add Side Orders</string>
-    <string name="action_Basket">Shopping Basket</string>
     <string name="pizza_Size">Pizza Size</string>
-    <string name="which_pizza">Which Pizza</string>
-    <string name="pizza_topping">Add Or Remove Toppings</string>
-    <string name="add_topping">Add</string>
-    <string name="remove_topping">Remove</string>
+    <string name="which_pizza">Select Your Pizza</string>
     <string name="btnSelect">Select</string>
 
 
@@ -16,22 +11,6 @@
         <item>"15 Inches"</item>
         <item>"12 Inches"</item>
         <item>"10 Inches"</item>
-    </string-array>
-
-
-    <string-array name="pizza_Toppings">
-        <item>"Mushroom"</item>
-        <item>"Sweet Corn"</item>
-        <item>"Green Pepper"</item>
-        <item>"Pepperoni"</item>
-        <item>"Ham"</item>
-        <item>"Bacon"</item>
-        <item>"Red Onion"</item>
-        <item>"Black Olive"</item>
-        <item>"Chicken"</item>
-        <item>"Jalapeneo"</item>
-        <item>"Beef"</item>
-        <item>"Meat Ball"</item>
     </string-array>
 
 </resources>
