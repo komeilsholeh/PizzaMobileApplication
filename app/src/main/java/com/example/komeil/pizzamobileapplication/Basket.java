@@ -29,4 +29,12 @@ public class Basket {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
 }

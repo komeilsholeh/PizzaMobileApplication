@@ -107,11 +107,13 @@ public class Main extends AppCompatActivity {
 
 
     private String claculateTotalPrice(){
-        double total=0;
+        double price=0;
         if (basket.size()>0){
-
+            for(int i=0;i< basket.size();i++){
+                price=price+basket.get(i).getPrice();
+            }
         }
-        total="Total Price £" + String.valueOf(price);
+        String total="Total Price £" + String.valueOf(price);
         return total;
     }
 }
